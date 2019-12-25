@@ -1,0 +1,37 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:minHeight="45dp"
+    tools:parentTag="android.widget.LinearLayout">
+
+    <include
+        android:id="@+id/day1"
+        layout="@layout/layout_day" />
+
+    <include
+        android:id="@+id/day2"
+        layout="@layout/layout_day" />
+
+    <include
+        android:id="@+id/day3"
+        layout="@layout/layout_day" />
+
+    <include
+        android:id="@+id/day4"
+        layout="@layout/layout_day" />
+
+    <include
+        android:id="@+id/day5"
+        layout="@layout/layout_day" />
+
+    <include
+        android:id="@+id/day6"
+        layout="@layout/layout_day" />
+
+    <include
+        android:id="@+id/day7"
+        layout="@layout/layout_day" />
+
+</merge>

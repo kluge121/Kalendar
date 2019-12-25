@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="KalendarView">
+        <!--1=sunday, 2=monday-->
+        <attr name="startDaysOfWeek" format="integer" />
+    </declare-styleable>
+
+</resources>

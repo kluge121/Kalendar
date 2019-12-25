@@ -1,0 +1,81 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:minHeight="46dp"
+    android:orientation="horizontal"
+    tools:parentTag="android.widget.LinearLayout">
+
+    <TextView
+        android:id="@+id/day1_of_week"
+        android:layout_width="56dp"
+        android:layout_height="46dp"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        tools:text="일" />
+
+
+    <TextView
+        android:id="@+id/day2_of_week"
+        android:layout_width="56dp"
+        android:layout_height="46dp"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        tools:text="월" />
+
+    <TextView
+        android:id="@+id/day3_of_week"
+        android:layout_width="56dp"
+        android:layout_height="46dp"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        tools:text="화" />
+
+    <TextView
+        android:id="@+id/day4_of_week"
+        android:layout_width="56dp"
+        android:layout_height="46dp"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        tools:text="수" />
+
+    <TextView
+        android:id="@+id/day5_of_week"
+        android:layout_width="56dp"
+        android:layout_height="46dp"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        tools:text="목" />
+
+    <TextView
+        android:id="@+id/day6_of_week"
+        android:layout_width="56dp"
+        android:layout_height="46dp"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        tools:text="금" />
+
+    <TextView
+        android:id="@+id/day7_of_week"
+        android:layout_width="56dp"
+        android:layout_height="46dp"
+        android:gravity="center"
+        android:textColor="@android:color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        tools:text="토" />
+
+</LinearLayout>

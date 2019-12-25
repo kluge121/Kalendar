@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="day_select_color">#212529</color>
+    <color name="day_select_range_color">#ced4da</color>
+    <color name="day_sub_text_color">#868e96</color>
+
+    <color name="white">#ffffffff</color>
+    <color name="black">#ff000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="background_dark">#ff000000</color>
+
+</resources>
