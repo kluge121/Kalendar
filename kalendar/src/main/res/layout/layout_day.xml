@@ -1,17 +1,18 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="56dp"
-    android:layout_height="46dp">
+    android:layout_height="46dp"
+    tools:parentTag="android.widget.RelativeLayout">
 
 
     <!-- 구간 선택 백그라운드 View -->
     <View
         android:id="@+id/day_background_view"
         android:layout_width="match_parent"
-        android:padding="0dp"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
-        android:background="@color/day_select_range_color" />
+        android:background="@color/day_select_range_color"
+        android:padding="0dp" />
 
 
     <!-- 단일 및 시작과 끝 백그라운드는 TextView에 -->
@@ -36,4 +37,4 @@
         tools:text="120,000" />
 
 
-</RelativeLayout>
+</merge>

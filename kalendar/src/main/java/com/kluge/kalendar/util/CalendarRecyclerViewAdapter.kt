@@ -5,7 +5,6 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
@@ -84,13 +83,13 @@ class MonthViewHolder(view: View, val daysOfWeekConverter: (Int) -> Int) :
 
                 //해당 주 날짜 입력
                 for (j in 0..6) {
-                    val dayContainer = (weekContainer[j] as RelativeLayout)
+                    val dayContainer = (weekContainer[j] as DayView)
 
                     //각 달의 첫째 주 시작요일 이전까지 invisible
                     if (columnDaysOfWeek > 0 && j <= columnDaysOfWeek - 1) {
-                        drawDay(DayView(dayContainer), endDay + 1, endDay)
+                        drawDay(dayContainer, endDay + 1, endDay)
                     } else {
-                        drawDay(DayView(dayContainer), inputDayValue, endDay)
+                        drawDay(dayContainer, inputDayValue, endDay)
                         inputDayValue++
                     }
                 }

@@ -6,32 +6,32 @@
     android:minHeight="45dp"
     tools:parentTag="android.widget.LinearLayout">
 
-    <include
-        android:id="@+id/day1"
-        layout="@layout/layout_day" />
+    <com.kluge.kalendar.view.DayView
+        android:layout_width="56dp"
+        android:layout_height="46dp" />
 
-    <include
-        android:id="@+id/day2"
-        layout="@layout/layout_day" />
+    <com.kluge.kalendar.view.DayView
+        android:layout_width="56dp"
+        android:layout_height="46dp" />
 
-    <include
-        android:id="@+id/day3"
-        layout="@layout/layout_day" />
+    <com.kluge.kalendar.view.DayView
+        android:layout_width="56dp"
+        android:layout_height="46dp" />
 
-    <include
-        android:id="@+id/day4"
-        layout="@layout/layout_day" />
+    <com.kluge.kalendar.view.DayView
+        android:layout_width="56dp"
+        android:layout_height="46dp" />
 
-    <include
-        android:id="@+id/day5"
-        layout="@layout/layout_day" />
+    <com.kluge.kalendar.view.DayView
+        android:layout_width="56dp"
+        android:layout_height="46dp" />
 
-    <include
-        android:id="@+id/day6"
-        layout="@layout/layout_day" />
+    <com.kluge.kalendar.view.DayView
+        android:layout_width="56dp"
+        android:layout_height="46dp" />
 
-    <include
-        android:id="@+id/day7"
-        layout="@layout/layout_day" />
+    <com.kluge.kalendar.view.DayView
+        android:layout_width="56dp"
+        android:layout_height="46dp" />
 
 </merge>

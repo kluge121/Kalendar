@@ -1,37 +1,63 @@
 package com.kluge.kalendar.view
 
+import android.content.Context
+import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.RelativeLayout
+import com.kluge.kalendar.R
 import kotlinx.android.synthetic.main.layout_day.view.*
 
+class DayView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyle: Int = 0
+) : RelativeLayout(context, attrs, defStyle) {
 
-class DayView constructor(val dayContainerRoot: RelativeLayout) {
+    init {
+        LayoutInflater.from(context).inflate(
+            R.layout.layout_day,
+            this,
+            true
+        )
+    }
 
     fun setDayText(day: String) {
-        dayContainerRoot.day_text.text = day
+        day_text.text = day
     }
 
     fun setDayText(day: Int) {
-        dayContainerRoot.day_text.text = day.toString()
+        day_text.text = day.toString()
     }
 
     fun showRangeBackground() {
-        dayContainerRoot.day_background_view.visibility = View.VISIBLE
+        day_background_view.visibility = View.VISIBLE
     }
 
     fun hideRangeBackground() {
-        dayContainerRoot.day_background_view.visibility = View.INVISIBLE
+        day_background_view.visibility = View.INVISIBLE
+    }
+
+    fun showRangeStartAndEndBackGround() {
+        day_text.setTextColor(context.getColor(R.color.white))
+        day_text.setBackgroundResource(R.drawable.black_circle)
+    }
+
+    fun hideRangeStartAndEndBackGround() {
+        day_text.setTextColor(context.getColor(R.color.white))
+        day_text.setBackgroundResource(R.color.white)
     }
 
     fun setSubText(text: String) {
-        dayContainerRoot.day_sub_text.text = text
+        day_sub_text.text = text
     }
 
     fun dayInvisible() {
-        dayContainerRoot.visibility = View.INVISIBLE
+        visibility = View.INVISIBLE
     }
+
     fun dayVisible() {
-        dayContainerRoot.visibility = View.VISIBLE
+        visibility = View.VISIBLE
     }
 
 }
