@@ -4,6 +4,7 @@
     <declare-styleable name="KalendarView">
         <!--1=sunday, 2=monday-->
         <attr name="startDaysOfWeek" format="integer" />
+        <attr name="rangeMode" format="boolean" />
     </declare-styleable>
 
 </resources>

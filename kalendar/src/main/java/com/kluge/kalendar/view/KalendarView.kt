@@ -39,12 +39,8 @@ class KalendarView @JvmOverloads constructor(
                 recyclerView = it.findViewById(R.id.calendar_recyclerview)
                 DaysOfWeekUtil.setDaysOfIndex(daysOfWeekTitle, startDaysOfWeek)
                 recyclerView.layoutManager = LinearLayoutManager(context)
-                val manager = DateRangeSelectorManager(this)
                 adapter =
-                    CalendarRecyclerViewAdapter(
-                        manager = manager,
-                        startDaysOfWeek = startDaysOfWeek
-                    )
+                    CalendarRecyclerViewAdapter(startDaysOfWeek = startDaysOfWeek)
                 recyclerView.adapter = adapter
 
                 val array = arrayOf(

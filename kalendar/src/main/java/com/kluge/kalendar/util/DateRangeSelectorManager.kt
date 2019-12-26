@@ -1,9 +1,8 @@
 package com.kluge.kalendar.util
 
 import com.kluge.kalendar.view.DayView
-import com.kluge.kalendar.view.KalendarView
 
-class DateRangeSelectorManager constructor(val kalendarView: KalendarView) {
+object DateRangeSelectorManager {
 
     private var startDayView: DayView? = null
     private var endDayView: DayView? = null
@@ -22,6 +21,20 @@ class DateRangeSelectorManager constructor(val kalendarView: KalendarView) {
             singleModeClick(dayView)
         }
     }
+
+    fun bindSupportDayView(dayView: DayView) {
+        //TODO 범위 선택에 따른 중간 range 영역 선택
+        if (dayView == startDayView || dayView == endDayView || dayView == singleDayView) {
+            dayView.showRangeStartAndEndBackGround()
+            dayView.hideRangeBackground()
+        } else if (rangeSelectFlag) {
+            dayView.hideRangeStartAndEndBackGround()
+            dayView.hideRangeBackground()
+        } else {
+            dayView.hideRangeBackground()
+        }
+    }
+
 
     private fun singleModeClick(dayView: DayView) {
         singleDayView?.hideRangeStartAndEndBackGround()
@@ -51,9 +64,7 @@ class DateRangeSelectorManager constructor(val kalendarView: KalendarView) {
         }
     }
 
-
     private fun stateClear() {
-
         if (rangeSelectFlag) {
             startDayView?.hideRangeStartAndEndBackGround()
             endDayView?.hideRangeStartAndEndBackGround()
@@ -61,10 +72,8 @@ class DateRangeSelectorManager constructor(val kalendarView: KalendarView) {
         } else {
             singleDayView?.hideRangeBackground()
         }
-
         startDayView = null
         endDayView = null
         singleDayView = null
-
     }
 }

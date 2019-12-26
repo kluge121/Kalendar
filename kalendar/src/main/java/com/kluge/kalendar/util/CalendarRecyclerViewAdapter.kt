@@ -13,16 +13,16 @@ import kotlinx.android.synthetic.main.layout_item_month.view.*
 import java.util.*
 
 
-class CalendarRecyclerViewAdapter(val manager: DateRangeSelectorManager, startDaysOfWeek: Int) :
+class CalendarRecyclerViewAdapter(startDaysOfWeek: Int) :
     RecyclerView.Adapter<MonthViewHolder>() {
 
     private val months = mutableListOf<KMonth>()
+    private val monthMap = mutableMapOf<String, KMonth>()
     private val daysOfWeekConverter = DaysOfWeekUtil.makeApi(startDaysOfWeek)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MonthViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.layout_item_month, parent, false)
-
         return MonthViewHolder(view, daysOfWeekConverter)
     }
 
@@ -36,11 +36,22 @@ class CalendarRecyclerViewAdapter(val manager: DateRangeSelectorManager, startDa
 
     fun setMonths(vararg KMonths: KMonth) {
         this.months.clear()
-        this.months.addAll(KMonths)
+        this.monthMap.clear()
+        for (month in KMonths) {
+            this.months.add(month)
+            this.monthMap["$month"] = month
+        }
+    }
+
+    fun findMonth(year: Int, month: Int) {
+
+
     }
 }
 
-class MonthViewHolder(view: View, val daysOfWeekConverter: (Int) -> Int) :
+class MonthViewHolder(
+    view: View, val daysOfWeekConverter: (Int) -> Int
+) :
     RecyclerView.ViewHolder(view) {
 
     fun bind(data: KMonth) {
@@ -58,7 +69,7 @@ class MonthViewHolder(view: View, val daysOfWeekConverter: (Int) -> Int) :
     private fun drawMonths(data: KMonth) {
         val root = (itemView as ViewGroup)
 
-        //Calendar, 해당 달의 1일로 설
+        //Calendar, 해당 달의 1일로 설정
         val calendar = Calendar.getInstance().apply {
             set(data.year, data.month, 1)
         }
@@ -101,19 +112,23 @@ class MonthViewHolder(view: View, val daysOfWeekConverter: (Int) -> Int) :
     }
 
     private fun drawDay(dayView: DayView, day: Int, endDay: Int) {
-
         if (day > endDay) {
             dayView.dayInvisible()
         } else {
             dayView.dayVisible()
             dayView.setDayText(day)
-            dayView.hideRangeBackground()
         }
+        DateRangeSelectorManager.bindSupportDayView(dayView)
     }
 }
 
 data class KMonth(
     val year: Int,
     val month: Int
-)
+) {
+    override fun toString(): String {
+        val monthText = if (month < 10) "0$month" else month.toString()
+        return "$year$monthText"
+    }
+}
 

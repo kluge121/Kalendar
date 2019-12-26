@@ -2,10 +2,12 @@ package com.kluge.kalendar.view
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.RelativeLayout
 import com.kluge.kalendar.R
+import com.kluge.kalendar.util.DateRangeSelectorManager
 import kotlinx.android.synthetic.main.layout_day.view.*
 
 class DayView @JvmOverloads constructor(
@@ -20,6 +22,9 @@ class DayView @JvmOverloads constructor(
             this,
             true
         )
+        setOnClickListener {
+            DateRangeSelectorManager.dayClick(this)
+        }
     }
 
     fun setDayText(day: String) {
@@ -44,8 +49,8 @@ class DayView @JvmOverloads constructor(
     }
 
     fun hideRangeStartAndEndBackGround() {
-        day_text.setTextColor(context.getColor(R.color.white))
-        day_text.setBackgroundResource(R.color.white)
+        day_text.setTextColor(context.getColor(R.color.black))
+        day_text.setBackgroundResource(0)
     }
 
     fun setSubText(text: String) {
