@@ -2,7 +2,6 @@ package com.kluge.kalendar.view
 
 import android.content.Context
 import android.util.AttributeSet
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.RelativeLayout
@@ -10,11 +9,16 @@ import com.kluge.kalendar.R
 import com.kluge.kalendar.util.DateRangeSelectorManager
 import kotlinx.android.synthetic.main.layout_day.view.*
 
+
 class DayView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyle: Int = 0
 ) : RelativeLayout(context, attrs, defStyle) {
+
+    private var year: Int = 0
+    private var month: Int = 0
+    private var day: Int = 0
 
     init {
         LayoutInflater.from(context).inflate(
@@ -27,11 +31,10 @@ class DayView @JvmOverloads constructor(
         }
     }
 
-    fun setDayText(day: String) {
-        day_text.text = day
-    }
-
-    fun setDayText(day: Int) {
+    fun setDayText(day: Int, month: Int, year: Int) {
+        this.day = day
+        this.month = month
+        this.year = year
         day_text.text = day.toString()
     }
 
@@ -65,6 +68,10 @@ class DayView @JvmOverloads constructor(
         visibility = View.VISIBLE
     }
 
+    override fun toString(): String {
+        val convertMonth = if (month < 10) "0$month" else month.toString()
+        return "$year$convertMonth$day"
+    }
 }
 
 

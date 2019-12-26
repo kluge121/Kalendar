@@ -85,8 +85,8 @@ class MonthViewHolder(
                 //draw week
                 val weekContainer = (it as ViewGroup)
 
-                //해당 주에 날짜가 하나도 없으면 해당 week 숨기
-                if (inputDayValue >= endDay) {
+                //해당 주에 날짜가 하나도 없으면 해당 week 숨기기
+                if (inputDayValue > endDay) {
                     weekContainer.visibility = GONE
                 } else {
                     weekContainer.visibility = VISIBLE
@@ -98,27 +98,26 @@ class MonthViewHolder(
 
                     //각 달의 첫째 주 시작요일 이전까지 invisible
                     if (columnDaysOfWeek > 0 && j <= columnDaysOfWeek - 1) {
-                        drawDay(dayContainer, endDay + 1, endDay)
+                        drawDay(dayContainer, calendar, endDay + 1, endDay)
                     } else {
-                        drawDay(dayContainer, inputDayValue, endDay)
+                        drawDay(dayContainer, calendar, inputDayValue, endDay)
                         inputDayValue++
                     }
                 }
                 columnDaysOfWeek = 0
                 calendar.add(Calendar.WEEK_OF_MONTH, 1)
-
             }
         }
     }
 
-    private fun drawDay(dayView: DayView, day: Int, endDay: Int) {
+    private fun drawDay(dayView: DayView, calendar: Calendar, day: Int, endDay: Int) {
         if (day > endDay) {
             dayView.dayInvisible()
         } else {
             dayView.dayVisible()
-            dayView.setDayText(day)
+            dayView.setDayText(day, calendar.get(Calendar.MONTH), calendar.get(Calendar.YEAR))
+            DateRangeSelectorManager.bindSupportDayView(dayView)
         }
-        DateRangeSelectorManager.bindSupportDayView(dayView)
     }
 }
 
