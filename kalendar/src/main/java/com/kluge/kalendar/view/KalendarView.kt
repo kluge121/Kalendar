@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kluge.kalendar.R
 import com.kluge.kalendar.util.CalendarRecyclerViewAdapter
+import com.kluge.kalendar.util.DateRangeSelectorManager
 import com.kluge.kalendar.util.DaysOfWeekUtil
 import com.kluge.kalendar.util.KMonth
 
@@ -18,6 +19,7 @@ class KalendarView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyle: Int = 0
 ) : LinearLayout(context, attrs, defStyle) {
+
     private val recyclerView: RecyclerView
     private val adapter: CalendarRecyclerViewAdapter
     private val daysOfWeekTitle: WeekTitleView
@@ -37,7 +39,12 @@ class KalendarView @JvmOverloads constructor(
                 recyclerView = it.findViewById(R.id.calendar_recyclerview)
                 DaysOfWeekUtil.setDaysOfIndex(daysOfWeekTitle, startDaysOfWeek)
                 recyclerView.layoutManager = LinearLayoutManager(context)
-                adapter = CalendarRecyclerViewAdapter(startDaysOfWeek = startDaysOfWeek)
+                val manager = DateRangeSelectorManager(this)
+                adapter =
+                    CalendarRecyclerViewAdapter(
+                        manager = manager,
+                        startDaysOfWeek = startDaysOfWeek
+                    )
                 recyclerView.adapter = adapter
 
                 val array = arrayOf(

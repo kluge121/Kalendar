@@ -5,7 +5,6 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.RelativeLayout
 import androidx.core.view.get
 import androidx.recyclerview.widget.RecyclerView
 import com.kluge.kalendar.R
@@ -14,8 +13,9 @@ import kotlinx.android.synthetic.main.layout_item_month.view.*
 import java.util.*
 
 
-class CalendarRecyclerViewAdapter(startDaysOfWeek: Int) :
+class CalendarRecyclerViewAdapter(val manager: DateRangeSelectorManager, startDaysOfWeek: Int) :
     RecyclerView.Adapter<MonthViewHolder>() {
+
     private val months = mutableListOf<KMonth>()
     private val daysOfWeekConverter = DaysOfWeekUtil.makeApi(startDaysOfWeek)
 
