@@ -16,6 +16,10 @@ import java.util.*
 class CalendarRecyclerViewAdapter(startDaysOfWeek: Int) :
     RecyclerView.Adapter<MonthViewHolder>() {
 
+    init {
+        DateRangeSelectorManager.setAdapter(this)
+    }
+
     private val months = mutableListOf<KMonth>()
     private val monthMap = mutableMapOf<String, KMonth>()
     private val daysOfWeekConverter = DaysOfWeekUtil.makeApi(startDaysOfWeek)
@@ -41,11 +45,6 @@ class CalendarRecyclerViewAdapter(startDaysOfWeek: Int) :
             this.months.add(month)
             this.monthMap["$month"] = month
         }
-    }
-
-    fun findMonth(year: Int, month: Int) {
-
-
     }
 }
 
@@ -116,7 +115,7 @@ class MonthViewHolder(
         } else {
             dayView.dayVisible()
             dayView.setDayText(day, calendar.get(Calendar.MONTH), calendar.get(Calendar.YEAR))
-            DateRangeSelectorManager.bindSupportDayView(dayView)
+            DateRangeSelectorManager.bindDayView(dayView)
         }
     }
 }
@@ -126,8 +125,8 @@ data class KMonth(
     val month: Int
 ) {
     override fun toString(): String {
-        val monthText = if (month < 10) "0$month" else month.toString()
-        return "$year$monthText"
+        val monthString = if (month < 10) "0$month" else month.toString()
+        return "${year}${monthString}00"
     }
 }
 

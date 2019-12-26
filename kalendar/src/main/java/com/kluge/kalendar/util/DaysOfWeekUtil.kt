@@ -52,7 +52,7 @@ object DaysOfWeekUtil {
     }
 
     /**
-     * 요일의 타이틀을 실제로 입
+     * 요일의 타이틀을 실제로 입력
      * @param viewGroup daysOfWeek root view
      * @param startDaysOfWeek 달력 가장 왼쪽에 오는 요일 설정, Java Calendar daysOfWeek type
      */

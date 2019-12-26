@@ -16,9 +16,9 @@ class DayView @JvmOverloads constructor(
     defStyle: Int = 0
 ) : RelativeLayout(context, attrs, defStyle) {
 
-    private var year: Int = 0
-    private var month: Int = 0
-    private var day: Int = 0
+    var year: Int = 0
+    var month: Int = 0
+    var day: Int = 0
 
     init {
         LayoutInflater.from(context).inflate(
@@ -56,7 +56,7 @@ class DayView @JvmOverloads constructor(
         day_text.setBackgroundResource(0)
     }
 
-    fun hideDayEffet(){
+    fun hideDayEffet() {
         hideRangeBackground()
         hideRangeStartAndEndBackGround()
     }
@@ -76,7 +76,8 @@ class DayView @JvmOverloads constructor(
 
     override fun toString(): String {
         val convertMonth = if (month < 10) "0$month" else month.toString()
-        return "$year$convertMonth$day"
+        val convertDay = if (day < 10) "0$day" else day.toString()
+        return "$year$convertMonth$convertDay"
     }
 
     fun toInt(): Int {
@@ -90,6 +91,11 @@ class DayView @JvmOverloads constructor(
         } else {
             -1
         }
+    }
+
+    fun toMonthString() : String {
+        val monthString = if (month < 10) "0$month" else month.toString()
+        return "${year}${monthString}00"
     }
 }
 

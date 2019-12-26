@@ -1,5 +1,6 @@
 package com.kluge.kalendar.util
 
+import android.widget.LinearLayout
 import com.kluge.kalendar.view.DayView
 
 object DateRangeSelectorManager {
@@ -27,7 +28,7 @@ object DateRangeSelectorManager {
         }
     }
 
-    fun bindSupportDayView(dayView: DayView) {
+    fun bindDayView(dayView: DayView) {
         dayView.hideRangeBackground()
         dayView.hideRangeStartAndEndBackGround()
         if (singleString == dayView.toString() || multiString1 == dayView.toString() || multiString2 == dayView.toString()) {
@@ -52,28 +53,42 @@ object DateRangeSelectorManager {
             dayView.showRangeStartAndEndBackGround()
             multiDayView2 = dayView
             multiString2 = dayView.toString()
+            showDateBetweenRangeEffect()
         } else if (multiDayView1 != null && multiDayView2 != null) {
             stateClear()
             dayView.showRangeStartAndEndBackGround()
+            hideDateBetweenRangeEffect()
             multiDayView1 = dayView
             multiString1 = dayView.toString()
         }
     }
 
-
-    private fun showDateBetweenRagneEffect() {
-        val startDay: DayView
+    private fun showDateBetweenRangeEffect() {
+        val startDayView: DayView
         val endDayView: DayView
 
         if (multiDayView1 != null && multiDayView2 != null) {
             if (multiDayView1!!.toInt() > multiDayView2!!.toInt()) {
-                startDay = multiDayView2!!
+                startDayView = multiDayView2!!
                 endDayView = multiDayView1!!
             } else {
-                startDay = multiDayView1!!
+                startDayView = multiDayView1!!
                 endDayView = multiDayView2!!
             }
+
+            //DayView - WeekView - MonthItem(R.layout.layout_item_month)
+            val root = (multiDayView1?.rootView?.rootView as LinearLayout)
+            root.
+
+
+
         }
+
+
+    }
+
+    private fun hideDateBetweenRangeEffect() {
+
     }
 
     private fun stateClear() {
