@@ -27,10 +27,17 @@ class KalendarView @JvmOverloads constructor(
     init {
         var startDaysOfWeek: Int
         context.obtainStyledAttributes(attrs, R.styleable.KalendarView).run {
+
             startDaysOfWeek = getInt(R.styleable.KalendarView_startDaysOfWeek, 1).let {
                 if (it > 7 || it < 1) 1
                 else it
             }
+            DateRangeSelectorManager.setSingleSelectMode(
+                getBoolean(
+                    R.styleable.KalendarView_rangeMode,
+                    false
+                )
+            )
         }
 
         LayoutInflater.from(context).inflate(R.layout.layout_calendar, this, true)

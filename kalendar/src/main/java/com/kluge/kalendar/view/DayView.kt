@@ -56,6 +56,12 @@ class DayView @JvmOverloads constructor(
         day_text.setBackgroundResource(0)
     }
 
+    fun hideDayEffet(){
+        hideRangeBackground()
+        hideRangeStartAndEndBackGround()
+    }
+
+
     fun setSubText(text: String) {
         day_sub_text.text = text
     }
@@ -71,6 +77,19 @@ class DayView @JvmOverloads constructor(
     override fun toString(): String {
         val convertMonth = if (month < 10) "0$month" else month.toString()
         return "$year$convertMonth$day"
+    }
+
+    fun toInt(): Int {
+        val firstNumRegExp = "^[1-9]+$".toRegex()
+        val NumRegExp = "^[0-9]+$".toRegex()
+        var result = this.toString()
+        return if (result[0].toString().matches(firstNumRegExp) &&
+            result.substring(1).matches(firstNumRegExp)
+        ) {
+            result.toInt()
+        } else {
+            -1
+        }
     }
 }
 

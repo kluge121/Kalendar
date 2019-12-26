@@ -1,19 +1,19 @@
 package com.kluge.kalendar.util
 
-import android.util.Log
 import com.kluge.kalendar.view.DayView
 
 object DateRangeSelectorManager {
 
     private var rangeSelectFlag: Boolean = false
 
-    private var startDayView: DayView? = null
-    private var endDayView: DayView? = null
     private var singleDayView: DayView? = null
+    private var multiDayView1: DayView? = null
+    private var multiDayView2: DayView? = null
 
-    private var startString: String? = null
-    private var endString: String? = null
     private var singleString: String? = null
+    private var multiString1: String? = null
+    private var multiString2: String? = null
+
 
     fun setSingleSelectMode(boolean: Boolean) {
         rangeSelectFlag = boolean
@@ -30,52 +30,65 @@ object DateRangeSelectorManager {
     fun bindSupportDayView(dayView: DayView) {
         dayView.hideRangeBackground()
         dayView.hideRangeStartAndEndBackGround()
-        //TODO 범위 선택에 따른 중간 range 영역 선택
-        if (startString == dayView.toString() || endString == dayView.toString() || singleString == dayView.toString()) {
+        if (singleString == dayView.toString() || multiString1 == dayView.toString() || multiString2 == dayView.toString()) {
             dayView.showRangeStartAndEndBackGround()
-        } else if (rangeSelectFlag) {
-            Log.e("체크", "중간 영역")
-            dayView.hideRangeStartAndEndBackGround()
         }
+
     }
 
     private fun singleModeClick(dayView: DayView) {
-        singleDayView?.hideRangeStartAndEndBackGround()
+        singleDayView?.hideDayEffet()
         singleDayView = dayView.apply { showRangeStartAndEndBackGround() }
         singleString = dayView.toString()
     }
 
     private fun multiModeClick(dayView: DayView) {
-        if (startDayView == null || endDayView == null) {
+
+        if (multiDayView1 == null) {
             dayView.showRangeStartAndEndBackGround()
-        } else {
-            showDateRagneBackgorund()
+            multiDayView1 = dayView
+            multiString1 = dayView.toString()
+        } else if (multiDayView2 == null) {
+            dayView.showRangeStartAndEndBackGround()
+            multiDayView2 = dayView
+            multiString2 = dayView.toString()
+        } else if (multiDayView1 != null && multiDayView2 != null) {
+            stateClear()
+            dayView.showRangeStartAndEndBackGround()
+            multiDayView1 = dayView
+            multiString1 = dayView.toString()
         }
     }
 
-    private fun showDateRagneBackgorund() {
-        if (startDayView != null && endDayView != null) {
-        }
-    }
 
-    private fun hideDateRagneBackgorund() {
-        if (startDayView != null && endDayView != null) {
+    private fun showDateBetweenRagneEffect() {
+        val startDay: DayView
+        val endDayView: DayView
+
+        if (multiDayView1 != null && multiDayView2 != null) {
+            if (multiDayView1!!.toInt() > multiDayView2!!.toInt()) {
+                startDay = multiDayView2!!
+                endDayView = multiDayView1!!
+            } else {
+                startDay = multiDayView1!!
+                endDayView = multiDayView2!!
+            }
         }
     }
 
     private fun stateClear() {
-        if (rangeSelectFlag) {
-            startDayView?.hideRangeStartAndEndBackGround()
-            endDayView?.hideRangeStartAndEndBackGround()
-            hideDateRagneBackgorund()
-        } else {
-            singleDayView?.hideRangeBackground()
-        }
-        startDayView = null
-        endDayView = null
+
+        singleDayView?.hideDayEffet()
+        multiDayView1?.hideDayEffet()
+        multiDayView2?.hideDayEffet()
+
         singleDayView = null
-        startString = ""
-        endString = ""
-        singleString = ""
+        multiDayView1 = null
+        multiDayView2 = null
+
+        singleString = null
+        multiString1 = null
+        multiString2 = null
+
     }
 }
