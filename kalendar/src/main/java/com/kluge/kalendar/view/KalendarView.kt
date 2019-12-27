@@ -8,10 +8,10 @@ import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kluge.kalendar.R
+import com.kluge.kalendar.model.KMonth
 import com.kluge.kalendar.util.CalendarRecyclerViewAdapter
 import com.kluge.kalendar.util.DateRangeSelectorManager
 import com.kluge.kalendar.util.DaysOfWeekUtil
-import com.kluge.kalendar.util.KMonth
 
 
 class KalendarView @JvmOverloads constructor(
@@ -69,6 +69,7 @@ class KalendarView @JvmOverloads constructor(
 
             }
     }
+
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)

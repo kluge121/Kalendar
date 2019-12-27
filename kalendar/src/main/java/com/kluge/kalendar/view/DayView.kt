@@ -8,6 +8,7 @@ import android.widget.RelativeLayout
 import com.kluge.kalendar.R
 import com.kluge.kalendar.util.DateRangeSelectorManager
 import kotlinx.android.synthetic.main.layout_day.view.*
+import java.util.*
 
 
 class DayView @JvmOverloads constructor(
@@ -28,6 +29,16 @@ class DayView @JvmOverloads constructor(
         )
         setOnClickListener {
             DateRangeSelectorManager.dayClick(this)
+        }
+    }
+
+    fun drawDay(calendar: Calendar, day: Int, endDay: Int) {
+        if (day > endDay) {
+            dayInvisible()
+        } else {
+            dayVisible()
+            setDayText(day, calendar.get(Calendar.MONTH), calendar.get(Calendar.YEAR))
+            DateRangeSelectorManager.bindDayView(this)
         }
     }
 
@@ -61,7 +72,6 @@ class DayView @JvmOverloads constructor(
         hideRangeStartAndEndBackGround()
     }
 
-
     fun setSubText(text: String) {
         day_sub_text.text = text
     }
@@ -81,19 +91,20 @@ class DayView @JvmOverloads constructor(
     }
 
     fun toInt(): Int {
-        val firstNumRegExp = "^[1-9]+$".toRegex()
-        val NumRegExp = "^[0-9]+$".toRegex()
-        var result = this.toString()
-        return if (result[0].toString().matches(firstNumRegExp) &&
-            result.substring(1).matches(firstNumRegExp)
-        ) {
-            result.toInt()
-        } else {
-            -1
-        }
+//        val firstNumRegExp = "^[1-9]+$".toRegex()
+//        val NumRegExp = "^[0-9]+$".toRegex()
+//        var result = this.toString()
+//        return if (result[0].toString().matches(firstNumRegExp) &&
+//            result.substring(1).matches(firstNumRegExp)
+//        ) {
+//            result.toInt()
+//        } else {
+//            -1
+//        }
+        return toString().toInt()
     }
 
-    fun toMonthString() : String {
+    fun toMonthString(): String {
         val monthString = if (month < 10) "0$month" else month.toString()
         return "${year}${monthString}00"
     }

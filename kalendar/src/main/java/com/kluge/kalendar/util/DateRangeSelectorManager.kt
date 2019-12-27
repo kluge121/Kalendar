@@ -1,6 +1,6 @@
 package com.kluge.kalendar.util
 
-import android.widget.LinearLayout
+import android.util.Log
 import com.kluge.kalendar.view.DayView
 
 object DateRangeSelectorManager {
@@ -33,8 +33,23 @@ object DateRangeSelectorManager {
         dayView.hideRangeStartAndEndBackGround()
         if (singleString == dayView.toString() || multiString1 == dayView.toString() || multiString2 == dayView.toString()) {
             dayView.showRangeStartAndEndBackGround()
-        }
+        } else if (rangeSelectFlag && multiDayView1 != null && multiDayView2 != null) {
+            val startDayView: DayView
+            val endDayView: DayView
 
+            if (multiDayView1!!.toInt() > multiDayView2!!.toInt()) {
+                startDayView = multiDayView2!!
+                endDayView = multiDayView1!!
+            } else {
+                startDayView = multiDayView1!!
+                endDayView = multiDayView2!!
+            }
+
+            if (dayView.toInt() > startDayView.toInt() && dayView.toInt() < endDayView.toInt()) {
+                Log.e("체크", "바인드체크")
+//                dayView.showRangeBackground()
+            }
+        }
     }
 
     private fun singleModeClick(dayView: DayView) {
@@ -47,52 +62,33 @@ object DateRangeSelectorManager {
 
         if (multiDayView1 == null) {
             dayView.showRangeStartAndEndBackGround()
-            multiDayView1 = dayView
             multiString1 = dayView.toString()
+            multiDayView1 = dayView
         } else if (multiDayView2 == null) {
             dayView.showRangeStartAndEndBackGround()
-            multiDayView2 = dayView
             multiString2 = dayView.toString()
+            multiDayView2 = dayView
             showDateBetweenRangeEffect()
         } else if (multiDayView1 != null && multiDayView2 != null) {
             stateClear()
+            multiString1 = dayView.toString()
+            multiDayView1 = dayView
             dayView.showRangeStartAndEndBackGround()
             hideDateBetweenRangeEffect()
-            multiDayView1 = dayView
-            multiString1 = dayView.toString()
+
         }
     }
 
     private fun showDateBetweenRangeEffect() {
-        val startDayView: DayView
-        val endDayView: DayView
-
-        if (multiDayView1 != null && multiDayView2 != null) {
-            if (multiDayView1!!.toInt() > multiDayView2!!.toInt()) {
-                startDayView = multiDayView2!!
-                endDayView = multiDayView1!!
-            } else {
-                startDayView = multiDayView1!!
-                endDayView = multiDayView2!!
-            }
-
-            //DayView - WeekView - MonthItem(R.layout.layout_item_month)
-            val root = (multiDayView1?.rootView?.rootView as LinearLayout)
-            root.
-
-
-
-        }
-
 
     }
 
     private fun hideDateBetweenRangeEffect() {
 
+
     }
 
     private fun stateClear() {
-
         singleDayView?.hideDayEffet()
         multiDayView1?.hideDayEffet()
         multiDayView2?.hideDayEffet()
@@ -104,6 +100,5 @@ object DateRangeSelectorManager {
         singleString = null
         multiString1 = null
         multiString2 = null
-
     }
 }

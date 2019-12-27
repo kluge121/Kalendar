@@ -16,28 +16,9 @@
         android:textSize="20sp"
         tools:text="2020년 1월" />
 
-    <com.kluge.kalendar.view.WeekView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <com.kluge.kalendar.view.WeekView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <com.kluge.kalendar.view.WeekView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <com.kluge.kalendar.view.WeekView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <com.kluge.kalendar.view.WeekView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <com.kluge.kalendar.view.WeekView
-        android:layout_width="match_parent"
+    <com.kluge.kalendar.view.MonthView
+        android:id="@+id/month_view"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
 </LinearLayout>
