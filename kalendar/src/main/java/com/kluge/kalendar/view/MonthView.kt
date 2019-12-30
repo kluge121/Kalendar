@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.LinearLayout
 import androidx.core.view.get
 import com.kluge.kalendar.R
-import com.kluge.kalendar.model.KMonth
+import com.kluge.kalendar.model.Month
 import java.util.*
 
 class MonthView @JvmOverloads constructor(
@@ -25,7 +25,7 @@ class MonthView @JvmOverloads constructor(
         )
     }
 
-    fun drawMonth(data: KMonth, daysOfWeekConverter: (Int) -> Int) {
+    fun drawMonth(data: Month, daysOfWeekConverter: (Int) -> Int) {
 
         //Calendar, 해당 달의 1일로 설정
         val calendar = Calendar.getInstance().apply {
@@ -63,4 +63,5 @@ class MonthView @JvmOverloads constructor(
             calendar.add(Calendar.WEEK_OF_MONTH, 1)
         }
     }
+
 }

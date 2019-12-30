@@ -1,16 +1,15 @@
 package com.kluge.kalendar.view
 
 import android.content.Context
-import android.graphics.Canvas
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kluge.kalendar.R
-import com.kluge.kalendar.model.KMonth
+import com.kluge.kalendar.model.Month
 import com.kluge.kalendar.util.CalendarRecyclerViewAdapter
-import com.kluge.kalendar.util.DateRangeSelectorManager
+import com.kluge.kalendar.util.DateSelectorManager
 import com.kluge.kalendar.util.DaysOfWeekUtil
 
 
@@ -26,18 +25,19 @@ class KalendarView @JvmOverloads constructor(
 
     init {
         var startDaysOfWeek: Int
-        context.obtainStyledAttributes(attrs, R.styleable.KalendarView).run {
 
+        context.obtainStyledAttributes(attrs, R.styleable.KalendarView).run {
             startDaysOfWeek = getInt(R.styleable.KalendarView_startDaysOfWeek, 1).let {
                 if (it > 7 || it < 1) 1
                 else it
             }
-            DateRangeSelectorManager.setSingleSelectMode(
+            DateSelectorManager.setSingleSelectMode(
                 getBoolean(
                     R.styleable.KalendarView_rangeMode,
                     false
                 )
             )
+            recycle()
         }
 
         LayoutInflater.from(context).inflate(R.layout.layout_calendar, this, true)
@@ -48,33 +48,26 @@ class KalendarView @JvmOverloads constructor(
                 recyclerView.layoutManager = LinearLayoutManager(context)
                 adapter =
                     CalendarRecyclerViewAdapter(startDaysOfWeek = startDaysOfWeek)
+                DateSelectorManager.setAdapter(adapter)
                 recyclerView.adapter = adapter
 
                 val array = arrayOf(
-                    KMonth(2019, 0),
-                    KMonth(2019, 1),
-                    KMonth(2019, 2),
-                    KMonth(2019, 3),
-                    KMonth(2019, 4),
-                    KMonth(2019, 5),
-                    KMonth(2019, 6),
-                    KMonth(2019, 7),
-                    KMonth(2019, 8),
-                    KMonth(2019, 9),
-                    KMonth(2019, 10),
-                    KMonth(2019, 11)
+                    Month(2019, 0),
+                    Month(2019, 1),
+                    Month(2019, 2),
+                    Month(2019, 3),
+                    Month(2019, 4),
+                    Month(2019, 5),
+                    Month(2019, 6),
+                    Month(2019, 7),
+                    Month(2019, 8),
+                    Month(2019, 9),
+                    Month(2019, 10),
+                    Month(2019, 11)
                 )
                 adapter.setMonths(*array)
                 adapter.notifyDataSetChanged()
 
             }
     }
-
-
-    override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
-
-    }
-
-
 }

@@ -1,6 +1,6 @@
 package com.kluge.kalendar.model
 
-data class KMonth(
+data class Month(
     val year: Int,
     val month: Int
 ) {

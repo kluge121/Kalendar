@@ -1,9 +1,8 @@
 package com.kluge.kalendar.util
 
-import android.util.Log
 import com.kluge.kalendar.view.DayView
 
-object DateRangeSelectorManager {
+object DateSelectorManager {
 
     private var rangeSelectFlag: Boolean = false
 
@@ -15,6 +14,11 @@ object DateRangeSelectorManager {
     private var multiString1: String? = null
     private var multiString2: String? = null
 
+    private var adapter: CalendarRecyclerViewAdapter? = null
+
+    fun setAdapter(adapter: CalendarRecyclerViewAdapter) {
+        this.adapter = adapter
+    }
 
     fun setSingleSelectMode(boolean: Boolean) {
         rangeSelectFlag = boolean
@@ -26,6 +30,7 @@ object DateRangeSelectorManager {
         } else {
             singleModeClick(dayView)
         }
+        adapter?.notifyDataSetChanged()
     }
 
     fun bindDayView(dayView: DayView) {
@@ -34,32 +39,30 @@ object DateRangeSelectorManager {
         if (singleString == dayView.toString() || multiString1 == dayView.toString() || multiString2 == dayView.toString()) {
             dayView.showRangeStartAndEndBackGround()
         } else if (rangeSelectFlag && multiDayView1 != null && multiDayView2 != null) {
-            val startDayView: DayView
-            val endDayView: DayView
+            val startString: String
+            val endString: String
 
             if (multiDayView1!!.toInt() > multiDayView2!!.toInt()) {
-                startDayView = multiDayView2!!
-                endDayView = multiDayView1!!
+                startString = multiString2!!
+                endString = multiString1!!
             } else {
-                startDayView = multiDayView1!!
-                endDayView = multiDayView2!!
+                startString = multiString1!!
+                endString = multiString2!!
             }
 
-            if (dayView.toInt() > startDayView.toInt() && dayView.toInt() < endDayView.toInt()) {
-                Log.e("체크", "바인드체크")
-//                dayView.showRangeBackground()
+            if (dayView.toInt() > startString.toInt() && dayView.toInt() < endString.toInt()) {
+                dayView.showRangeBackground()
             }
         }
     }
 
     private fun singleModeClick(dayView: DayView) {
-        singleDayView?.hideDayEffet()
+        singleDayView?.hideDayEffect()
         singleDayView = dayView.apply { showRangeStartAndEndBackGround() }
         singleString = dayView.toString()
     }
 
     private fun multiModeClick(dayView: DayView) {
-
         if (multiDayView1 == null) {
             dayView.showRangeStartAndEndBackGround()
             multiString1 = dayView.toString()
@@ -68,30 +71,18 @@ object DateRangeSelectorManager {
             dayView.showRangeStartAndEndBackGround()
             multiString2 = dayView.toString()
             multiDayView2 = dayView
-            showDateBetweenRangeEffect()
         } else if (multiDayView1 != null && multiDayView2 != null) {
             stateClear()
+            dayView.showRangeStartAndEndBackGround()
             multiString1 = dayView.toString()
             multiDayView1 = dayView
-            dayView.showRangeStartAndEndBackGround()
-            hideDateBetweenRangeEffect()
-
         }
     }
 
-    private fun showDateBetweenRangeEffect() {
-
-    }
-
-    private fun hideDateBetweenRangeEffect() {
-
-
-    }
-
     private fun stateClear() {
-        singleDayView?.hideDayEffet()
-        multiDayView1?.hideDayEffet()
-        multiDayView2?.hideDayEffet()
+        singleDayView?.hideDayEffect()
+        multiDayView1?.hideDayEffect()
+        multiDayView2?.hideDayEffect()
 
         singleDayView = null
         multiDayView1 = null
