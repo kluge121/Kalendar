@@ -32,6 +32,6 @@
         android:layout_centerHorizontal="true"
         android:textColor="@color/day_sub_text_color"
         android:textSize="7sp"
-        tools:text="120,000" />
+        android:text="120,000" />
 
 </merge>

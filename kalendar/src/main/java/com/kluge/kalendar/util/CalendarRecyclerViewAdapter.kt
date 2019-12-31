@@ -7,22 +7,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.kluge.kalendar.R
 import com.kluge.kalendar.model.Month
 import kotlinx.android.synthetic.main.layout_item_month.view.*
-import kotlin.collections.mutableListOf
-import kotlin.collections.mutableMapOf
-import kotlin.collections.set
 
 
 class CalendarRecyclerViewAdapter(startDaysOfWeek: Int) :
     RecyclerView.Adapter<MonthViewHolder>() {
 
     private val months = mutableListOf<Month>()
-    private val monthMap = mutableMapOf<String, Month>()
     private val daysOfWeekConverter = DaysOfWeekUtil.makeApi(startDaysOfWeek)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MonthViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.layout_item_month, parent, false)
-
         return MonthViewHolder(view, daysOfWeekConverter)
     }
 
@@ -36,10 +31,8 @@ class CalendarRecyclerViewAdapter(startDaysOfWeek: Int) :
 
     fun setMonths(vararg Months: Month) {
         this.months.clear()
-        this.monthMap.clear()
         for (month in Months) {
             this.months.add(month)
-            this.monthMap["$month"] = month
         }
     }
 }
@@ -58,7 +51,6 @@ class MonthViewHolder(
         )
         itemView.month_view.drawMonth(data, daysOfWeekConverter)
     }
-
 }
 
 
