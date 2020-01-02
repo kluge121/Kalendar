@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="46dp"
+    android:layout_height="56dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/day_month_title"
+        android:layout_width="46dp"
+        android:layout_height="wrap_content"
+        android:textSize="8sp"
+        tool:text="2019년 12월" />
+
+    <com.kluge.kalendar.view.DayView
+        android:id="@+id/dayView"
+        android:layout_width="46dp"
+        android:layout_height="56dp" />
+
+</LinearLayout>

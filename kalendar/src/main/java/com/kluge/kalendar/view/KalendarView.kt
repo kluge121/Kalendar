@@ -3,7 +3,9 @@ package com.kluge.kalendar.view
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.LinearLayout
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kluge.kalendar.R
@@ -11,6 +13,7 @@ import com.kluge.kalendar.model.Month
 import com.kluge.kalendar.util.CalendarRecyclerViewAdapter
 import com.kluge.kalendar.util.DateSelectorManager
 import com.kluge.kalendar.util.DaysOfWeekUtil
+import com.kluge.kalendar.util.toPx
 
 
 class KalendarView @JvmOverloads constructor(
@@ -19,6 +22,7 @@ class KalendarView @JvmOverloads constructor(
     defStyle: Int = 0
 ) : LinearLayout(context, attrs, defStyle) {
 
+    private var flag: Boolean = false
     private val recyclerView: RecyclerView
     private val adapter: CalendarRecyclerViewAdapter
     private val daysOfWeekTitle: WeekTitleView
@@ -69,5 +73,23 @@ class KalendarView @JvmOverloads constructor(
                 adapter.notifyDataSetChanged()
 
             }
+
+        recyclerView.itemAnimator = DefaultItemAnimator()
     }
+
+
+    fun collapse() {
+        adapter.dayMode()
+        layoutParams.height = 200.toPx(context)
+        recyclerView.layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+        daysOfWeekTitle.visibility = View.GONE
+    }
+
+    fun expand() {
+        adapter.monthMode()
+        layoutParams.height = 400.toPx(context)
+        recyclerView.layoutManager = LinearLayoutManager(context)
+        daysOfWeekTitle.visibility = View.VISIBLE
+    }
+
 }
